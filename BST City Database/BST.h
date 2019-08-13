@@ -18,6 +18,17 @@ private:
 	BSTNode<Key, E>* root;
 	int numNodes;
 
+	void clearHelp(BSTNode<Key,E>* curNode) {
+		if (curNode == nullptr) return;
+		if (curNode->leftIsChild) {
+			clearHelp(curNode->leftChild);
+		}
+		if (curNode->rightIsChild) {
+			clearHelp(curNode->rightChild);
+		}
+		delete curNode;
+	}
+
 	void removeHelp(BSTNode<Key,E>* curNode, BSTNode<Key,E>* parent) {
 		if (curNode == nullptr) {
 			throw "Key not found.";
@@ -169,9 +180,9 @@ public:
 		numNodes = 1;
 	}
 
-	~BST();
-
-	void clear();
+	~BST() {
+		clearHelp(root);
+	}
 
 	void insert(const Key& k, const E& val) {
 		BSTNode<Key,E>* parent = nullptr;
