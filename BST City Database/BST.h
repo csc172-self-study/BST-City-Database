@@ -160,7 +160,8 @@ private:
 
 	pair<BSTNode<Key,E>*, BSTNode<Key,E>*> leftmost(BSTNode<Key,E>* curNode) {
 		BSTNode<Key,E>* parent = nullptr;
-		while (curNode->leftIsChild) {
+		// Stop if we hit the most leftmost or the leftmost of current subtree
+		while (curNode->leftChild != nullptr && curNode->leftIsChild) {
 			parent = curNode;
 			curNode = curNode->leftChild;
 		}
