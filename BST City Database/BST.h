@@ -136,11 +136,11 @@ private:
 
 	BSTNode<Key,E>* inOrderSuccessor(BSTNode<Key,E>* curNode) {
 
-		if (!curNode->rightChild->leftIsChild) {
+		if (curNode->rightChild != nullptr && !curNode->rightChild->leftIsChild) {
 			return curNode->rightChild;
 		}
 		curNode = curNode->rightChild;
-		while (curNode->leftIsChild) {
+		while (curNode != nullptr && curNode->leftIsChild) {
 			curNode = curNode->leftChild;
 		}
 		return curNode;
@@ -148,11 +148,11 @@ private:
 
 	BSTNode<Key,E>* inOrderPredecessor(BSTNode<Key,E>* curNode) {
 
-		if (!curNode->leftChild->rightIsChild) {
+		if (curNode->leftChild != nullptr && !curNode->leftChild->rightIsChild) {
 			return curNode->leftChild;
 		}
 		curNode = curNode->leftChild;
-		while (curNode->rightIsChild) {
+		while (curNode != nullptr && curNode->rightIsChild) {
 			curNode = curNode->rightChild;
 		}
 		return curNode;
