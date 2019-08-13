@@ -165,7 +165,7 @@ private:
 			curNode = curNode->leftChild;
 		}
 
-		return std::make_pair(root, parent);
+		return std::make_pair(curNode, parent);
 	}
 
 public:
