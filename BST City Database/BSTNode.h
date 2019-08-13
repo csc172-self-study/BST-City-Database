@@ -70,10 +70,14 @@ public:
 	// Set left child (and appropriate threads)
 	void setLeft(BSTNode<Key,E>* left_child) {
 		if (left_child != nullptr) {
-			left_child->leftChild = this->leftChild;
-			left_child->leftIsChild = this->leftIsChild;
-			left_child->rightChild = this;
-			left_child->rightIsChild = false;
+			if (leftChild != nullptr) {
+				left_child->leftChild = this->leftChild;
+				left_child->leftIsChild = this->leftIsChild;
+			}
+			if (!left_child->rightIsChild) {
+				left_child->rightChild = this;
+				left_child->rightIsChild = false;
+			}
 			leftChild = left_child;
 			leftIsChild = true;
 		} else {
@@ -84,10 +88,14 @@ public:
 	// Set right child (and appropriate threads)
 	void setRight(BSTNode<Key,E>* right_child) {
 		if (right_child != nullptr) {
-			right_child->leftChild = this;
-			right_child->leftIsChild = false;
-			right_child->rightChild = this->rightChild;
-			right_child->rightIsChild = this->rightIsChild;
+			if (!right_child->leftIsChild) {
+				right_child->leftChild = this;
+				right_child->leftIsChild = false;
+			}
+			if (rightChild != nullptr) {
+				right_child->rightChild = this->rightChild;
+				right_child->rightIsChild = this->rightIsChild;
+			}
 			rightChild = right_child;
 			rightIsChild = true;
 		} else {
