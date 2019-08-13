@@ -10,7 +10,7 @@
 
 #include "BSTNode.h"
 #include <tuple>
-using std::string; using std::pair;
+using std::pair;
 
 template<typename Key, typename E>
 class BST : protected BSTNode<Key,E> {
@@ -147,11 +147,11 @@ private:
 		return curNode;
 	}
 
-	pair<BSTNode<Key,E>*, BSTNode<Key,E>*> leftmost(BSTNode<Key,E>* root) {
+	pair<BSTNode<Key,E>*, BSTNode<Key,E>*> leftmost(BSTNode<Key,E>* curNode) {
 		BSTNode<Key,E>* parent = nullptr;
-		while (root->leftIsChild) {
-			parent = root;
-			root = root->leftChild;
+		while (curNode->leftIsChild) {
+			parent = curNode;
+			curNode = curNode->leftChild;
 		}
 
 		return std::make_pair(root, parent);
